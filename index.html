@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rahul Tuition Classes – Desula Khood, Alwar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <style>
+    :root {
+      --primary: #f97316;
+      --primary-dark: #c2410c;
+      --secondary: #1e3a5f;
+      --accent: #facc15;
+      --light: #fff7ed;
+      --white: #ffffff;
+      --gray: #f1f5f9;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --shadow: 0 8px 32px rgba(30,58,95,0.10);
+      --radius: 18px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: sticky; top: 0; z-index: 999;
+      background: var(--secondary);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.18);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 0;
+      text-decoration: none;
+    }
+    .nav-logo .logo-circle {
+      width: 46px; height: 46px; border-radius: 50%;
+      background: var(--primary);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.4rem; font-weight: 800; color: #fff;
+      box-shadow: 0 2px 12px rgba(249,115,22,0.4);
+    }
+    .nav-logo .logo-text { color: #fff; }
+    .nav-logo .logo-text span { display: block; font-size: .72rem; color: var(--accent); font-weight: 500; letter-spacing: .04em; }
+    .nav-logo .logo-text strong { font-family: 'Baloo 2', cursive; font-size: 1.05rem; font-weight: 800; }
+    .nav-links { display: flex; gap: 6px; list-style: none; }
+    .nav-links a {
+      color: #cbd5e1; text-decoration: none; font-size: .88rem; font-weight: 500;
+      padding: 8px 14px; border-radius: 8px; transition: all .2s;
+    }
+    .nav-links a:hover, .nav-links a.active { background: var(--primary); color: #fff; }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; border-radius: 2px; transition: .3s; }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--secondary) 0%, #0f2744 60%, #1e3a5f 100%);
+      padding: 80px 5% 60px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 40px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 40%, rgba(249,115,22,0.12) 0%, transparent 70%);
+    }
+    .hero-text { flex: 1 1 320px; z-index: 1; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(250,204,21,0.15);
+      border: 1.5px solid var(--accent);
+      color: var(--accent);
+      font-size: .78rem; font-weight: 600; letter-spacing: .1em;
+      padding: 4px 14px; border-radius: 100px; margin-bottom: 18px;
+    }
+    .hero h1 {
+      font-family: 'Baloo 2', cursive;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800; color: #fff; line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .hero h1 span { color: var(--primary); }
+    .hero p { color: #94a3b8; font-size: .97rem; line-height: 1.7; margin-bottom: 28px; max-width: 480px; }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 26px; border-radius: 100px;
+      font-size: .9rem; font-weight: 600; cursor: pointer;
+      text-decoration: none; transition: all .22s;
+      border: none;
+    }
+    .btn-primary { background: var(--primary); color: #fff; box-shadow: 0 4px 18px rgba(249,115,22,0.35); }
+    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); }
+    .btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.35); }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+    .hero-stats { display: flex; gap: 30px; flex-wrap: wrap; z-index: 1; }
+    .stat-card {
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px; padding: 22px 28px; text-align: center; backdrop-filter: blur(8px);
+    }
+    .stat-card .num {
+      font-family: 'Baloo 2', cursive; font-size: 2rem; font-weight: 800; color: var(--accent);
+    }
+    .stat-card .lbl { font-size: .78rem; color: #94a3b8; margin-top: 2px; }
+
+    /* ── SECTIONS ── */
+    section { padding: 70px 5%; }
+    .section-header { text-align: center; margin-bottom: 50px; }
+    .section-tag {
+      display: inline-block; background: #fff3e8;
+      color: var(--primary); font-size: .75rem; font-weight: 700;
+      letter-spacing: .1em; padding: 4px 14px; border-radius: 100px; margin-bottom: 12px;
+    }
+    .section-header h2 {
+      font-family: 'Baloo 2', cursive; font-size: clamp(1.7rem, 4vw, 2.5rem);
+      font-weight: 800; color: var(--secondary); margin-bottom: 10px;
+    }
+    .section-header p { color: var(--muted); font-size: .95rem; max-width: 560px; margin: 0 auto; }
+
+    /* ── ABOUT ── */
+    .about { background: var(--gray); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+    .about-img {
+      border-radius: var(--radius); overflow: hidden;
+      background: linear-gradient(135deg, var(--secondary), var(--primary-dark));
+      height: 340px; display: flex; align-items: center; justify-content: center;
+      font-size: 6rem; box-shadow: var(--shadow);
+    }
+    .about-content h3 {
+      font-family: 'Baloo 2', cursive; font-size: 1.6rem; font-weight: 800;
+      color: var(--secondary); margin-bottom: 14px;
+    }
+    .about-content p { color: var(--muted); line-height: 1.8; margin-bottom: 16px; font-size: .95rem; }
+    .about-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .about-list li { display: flex; align-items: center; gap: 10px; color: var(--text); font-size: .92rem; }
+    .about-list li i { color: var(--primary); width: 20px; }
+
+    /* ── FACULTY ── */
+    .faculty { background: var(--white); }
+    .faculty-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 28px; }
+    .faculty-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 24px 26px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(30,58,95,0.07);
+      transition: all .28s;
+      position: relative; overflow: hidden;
+    }
+    .faculty-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+    }
+    .faculty-card:hover { transform: translateY(-8px); box-shadow: 0 16px 40px rgba(30,58,95,0.13); border-color: var(--primary); }
+    .faculty-avatar {
+      width: 88px; height: 88px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+      margin: 0 auto 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.2rem; color: #fff;
+      box-shadow: 0 6px 20px rgba(249,115,22,0.25);
+    }
+    .faculty-card h3 { font-family: 'Baloo 2', cursive; font-size: 1.2rem; font-weight: 800; color: var(--secondary); margin-bottom: 4px; }
+    .faculty-card .subject {
+      display: inline-block;
+      background: #fff3e8; color: var(--primary);
+      font-size: .75rem; font-weight: 600; padding: 3px 12px;
+      border-radius: 100px; margin-bottom: 14px;
+    }
+    .faculty-card .exp { color: var(--muted); font-size: .82rem; margin-bottom: 14px; }
+    .faculty-card .qual { color: var(--text); font-size: .85rem; font-weight: 500; margin-bottom: 16px; }
+    .faculty-skills { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-bottom: 18px; }
+    .skill-tag {
+      background: var(--gray); color: var(--secondary);
+      font-size: .72rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 6px;
+    }
+    .faculty-info { border-top: 1px solid var(--border); padding-top: 14px; display: flex; justify-content: space-around; }
+    .faculty-info .info-item { text-align: center; }
+    .faculty-info .info-item span { display: block; font-size: .72rem; color: var(--muted); }
+    .faculty-info .info-item strong { font-size: .9rem; color: var(--secondary); font-weight: 700; }
+
+    /* ── COURSES ── */
+    .courses { background: var(--light); }
+    .courses-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 22px; }
+    .course-card {
+      background: var(--white); border-radius: var(--radius);
+      padding: 26px 22px; border: 1.5px solid var(--border);
+      box-shadow: var(--shadow); transition: .25s; cursor: pointer;
+    }
+    .course-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+    .course-icon {
+      width: 54px; height: 54px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin-bottom: 14px;
+    }
+    .course-card h4 { font-family: 'Baloo 2', cursive; font-size: 1.05rem; font-weight: 800; color: var(--secondary); margin-bottom: 6px; }
+    .course-card p { font-size: .82rem; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
+    .course-meta { display: flex; justify-content: space-between; align-items: center; }
+    .course-meta .badge { font-size: .72rem; font-weight: 600; padding: 3px 10px; border-radius: 100px; }
+
+    /* ── FEATURES ── */
+    .features { background: var(--white); }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+    .feature-item {
+      background: var(--gray); border-radius: var(--radius);
+      padding: 28px 22px; text-align: center; transition: .22s;
+    }
+    .feature-item:hover { background: var(--secondary); }
+    .feature-item:hover h4, .feature-item:hover p { color: #fff; }
+    .feature-item:hover .feat-icon { background: rgba(255,255,255,0.15); }
+    .feat-icon {
+      width: 60px; height: 60px; border-radius: 16px;
+      background: rgba(249,115,22,0.12);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; margin: 0 auto 16px; transition: .22s;
+    }
+    .feature-item h4 { font-weight: 700; color: var(--secondary); margin-bottom: 8px; font-size: .95rem; }
+    .feature-item p { font-size: .82rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── REGISTRATION FORM ── */
+    .registration { background: linear-gradient(135deg, var(--secondary) 0%, #0f2744 100%); }
+    .registration .section-header h2 { color: #fff; }
+    .registration .section-header p { color: #94a3b8; }
+    .registration .section-tag { background: rgba(250,204,21,0.15); color: var(--accent); }
+    .form-card {
+      background: var(--white); border-radius: 24px;
+      padding: 44px 40px; max-width: 680px; margin: 0 auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-group label { font-size: .82rem; font-weight: 600; color: var(--secondary); }
+    .form-group label span { color: var(--primary); }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 11px 16px; border: 1.5px solid var(--border);
+      border-radius: 10px; font-size: .88rem; color: var(--text);
+      font-family: 'Poppins', sans-serif;
+      background: var(--gray); transition: .2s; outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--primary); background: #fff; box-shadow: 0 0 0 3px rgba(249,115,22,0.12); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-submit {
+      margin-top: 8px; text-align: center;
+    }
+    .btn-submit {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff; font-size: 1rem; font-weight: 700;
+      padding: 14px 40px; border-radius: 100px; border: none; cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      box-shadow: 0 6px 24px rgba(249,115,22,0.35);
+      transition: all .22s; width: 100%;
+    }
+    .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(249,115,22,0.45); }
+    .form-note { font-size: .78rem; color: var(--muted); margin-top: 12px; text-align: center; }
+
+    /* ── SUCCESS ── */
+    #success-msg {
+      display: none; text-align: center; padding: 30px 0;
+    }
+    #success-msg .success-icon { font-size: 4rem; color: #22c55e; margin-bottom: 14px; }
+    #success-msg h3 { font-family: 'Baloo 2', cursive; font-size: 1.5rem; color: var(--secondary); margin-bottom: 8px; }
+    #success-msg p { color: var(--muted); font-size: .9rem; }
+
+    /* ── CONTACT ── */
+    .contact { background: var(--gray); }
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 22px; }
+    .contact-item {
+      background: var(--white); border-radius: var(--radius);
+      padding: 28px 24px; display: flex; gap: 16px; align-items: flex-start;
+      box-shadow: 0 4px 18px rgba(30,58,95,0.07);
+    }
+    .contact-icon {
+      width: 48px; height: 48px; min-width: 48px;
+      border-radius: 12px; background: #fff3e8;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; color: var(--primary);
+    }
+    .contact-item h4 { font-weight: 700; font-size: .9rem; color: var(--secondary); margin-bottom: 4px; }
+    .contact-item p { font-size: .83rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--secondary);
+      color: #94a3b8; text-align: center;
+      padding: 30px 5%; font-size: .83rem;
+    }
+    footer strong { color: var(--accent); }
+    footer .footer-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 12px; }
+    footer .footer-links a { color: #94a3b8; text-decoration: none; transition: .2s; }
+    footer .footer-links a:hover { color: var(--primary); }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed; bottom: 30px; right: 30px; z-index: 9999;
+      background: #22c55e; color: #fff;
+      padding: 14px 24px; border-radius: 12px;
+      font-size: .88rem; font-weight: 600;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.15);
+      display: none; align-items: center; gap: 10px;
+      animation: slideUp .3s ease;
+    }
+    @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .about-img { height: 200px; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 72px; left: 0; right: 0; background: var(--secondary); padding: 16px; gap: 4px; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: block; }
+      .hero { padding: 50px 5% 40px; }
+      .hero-stats { gap: 14px; }
+      .form-card { padding: 28px 18px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .form-group.full { grid-column: auto; }
+    }
+    @media (max-width: 480px) {
+      .stat-card { padding: 16px 18px; }
+      .hero-btns { flex-direction: column; }
+      .btn { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <div class="logo-circle">R</div>
+    <div class="logo-text">
+      <strong>Rahul Tuition Classes</strong>
+      <span><i class="fa-solid fa-location-dot"></i> Desula Khood, Alwar</span>
+    </div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home" class="active">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#faculty">Faculty</a></li>
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#registration">Register</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="home">
+  <div class="hero-text">
+    <div class="hero-badge">🎓 Alwar's Best Tuition Center</div>
+    <h1>बेहतर भविष्य की शुरुआत<br><span>Rahul Tuition Classes</span> से</h1>
+    <p>Desula Khood, Alwar में स्थित हमारा ट्यूशन सेंटर Class 1 से 12 तक के सभी विद्यार्थियों को Expert Faculty के साथ Quality Education प्रदान करता है।</p>
+    <div class="hero-btns">
+      <a href="#registration" class="btn btn-primary"><i class="fa-solid fa-user-plus"></i> अभी Register करें</a>
+      <a href="#courses" class="btn btn-outline"><i class="fa-solid fa-book-open"></i> Courses देखें</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-card">
+      <div class="num">500+</div>
+      <div class="lbl">Students</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">10+</div>
+      <div class="lbl">Expert Faculty</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">8+</div>
+      <div class="lbl">Years Experience</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">98%</div>
+      <div class="lbl">Success Rate</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section class="about" id="about">
+  <div class="section-header">
+    <span class="section-tag">ABOUT US</span>
+    <h2>हमारे बारे में</h2>
+    <p>Rahul Tuition Classes — Desula Khood, Alwar की पहचान</p>
+  </div>
+  <div class="about-grid">
+    <div class="about-img">📚</div>
+    <div class="about-content">
+      <h3>Quality Education, Guaranteed Results</h3>
+      <p>राहुल ट्यूशन क्लासेज़ पिछले 8 वर्षों से Alwar के Desula Khood क्षेत्र में विद्यार्थियों को उच्च गुणवत्ता की शिक्षा प्रदान कर रहा है। हमारे अनुभवी Faculty Members बच्चों को Board Exams और Competitive Exams दोनों के लिए तैयार करते हैं।</p>
+      <p>हम small batch system में पढ़ाते हैं जिससे हर बच्चे पर individual attention मिलती है।</p>
+      <ul class="about-list">
+        <li><i class="fa-solid fa-check-circle"></i> Class 1 से 12 तक सभी Subjects</li>
+        <li><i class="fa-solid fa-check-circle"></i> Regular Mock Tests & Doubt Sessions</li>
+        <li><i class="fa-solid fa-check-circle"></i> Affordable Fee Structure</li>
+        <li><i class="fa-solid fa-check-circle"></i> Morning & Evening Batches उपलब्ध</li>
+        <li><i class="fa-solid fa-check-circle"></i> Parents को Regular Progress Reports</li>
+        <li><i class="fa-solid fa-check-circle"></i> Digital Study Material</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── FACULTY ── -->
+<section class="faculty" id="faculty">
+  <div class="section-header">
+    <span class="section-tag">OUR FACULTY</span>
+    <h2>हमारे Expert Teachers</h2>
+    <p>अनुभवी और Dedicated Faculty जो हर बच्चे की सफलता के लिए प्रतिबद्ध हैं</p>
+  </div>
+  <div class="faculty-grid">
+
+    <!-- Faculty 1 -->
+    <div class="faculty-card">
+      <div class="faculty-avatar">👨‍🏫</div>
+      <h3>Rahul kumar</h3>
+      <div class="subject">biology & Science</div>
+      <div class="qual">M.Sc. Mathematics, B.Ed.</div>
+      <div class="exp"><i class="fa-solid fa-briefcase"></i> 10 वर्षों का अनुभव</div>
+      <div class="faculty-skills">
+        <span class="skill-tag">chemistry</span>
+        <span class="skill-tag">biology</span>
+        <span class="skill-tag">Physics</span>
+        <span class="skill-tag">Class 9-12</span>
+      </div>
+      <div class="faculty-info">
+        <div class="info-item"><strong>250+</strong><span>Students</span></div>
+        <div class="info-item"><strong>98%</strong><span>Pass Rate</span></div>
+        <div class="info-item"><strong>10 Yr</strong><span>Exp</span></div>
+      </div>
+    </div>
+
+    <!-- Faculty 2 -->
+    <div class="faculty-card">
+      <div class="faculty-avatar" style="background: linear-gradient(135deg,#7c3aed,#a855f7);">👩‍🏫</div>
+      <h3>Priya Verma</h3>
+      <div class="subject">Hindi & English</div>
+      <div class="qual">M.A. Hindi, B.Ed.</div>
+      <div class="exp"><i class="fa-solid fa-briefcase"></i> 7 वर्षों का अनुभव</div>
+      <div class="faculty-skills">
+        <span class="skill-tag">Grammar</span>
+        <span class="skill-tag">Essay</span>
+        <span class="skill-tag">Literature</span>
+        <span class="skill-tag">Class 6-12</span>
+      </div>
+      <div class="faculty-info">
+        <div class="info-item"><strong>180+</strong><span>Students</span></div>
+        <div class="info-item"><strong>96%</strong><span>Pass Rate</span></div>
+        <div class="info-item"><strong>7 Yr</strong><span>Exp</span></div>
+      </div>
+    </div>
+
+    <!-- Faculty 3 -->
+    <div class="faculty-card">
+      <div class="faculty-avatar" style="background: linear-gradient(135deg,#059669,#10b981);">👨‍🔬</div>
+      <h3>Aajam khan</h3>
+      <div class="subject">Science & mathematics</div>
+      <div class="qual">M.Sc. mathematics, B.Ed.</div>
+      <div class="exp"><i class="fa-solid fa-briefcase"></i> 8 वर्षों का अनुभव</div>
+      <div class="faculty-skills">
+        <span class="skill-tag">Chemistry</span>
+        <span class="skill-tag">mathematics</span>
+        <span class="skill-tag">Physics</span>
+        <span class="skill-tag">Class 8-12</span>
+      </div>
+      <div class="faculty-info">
+        <div class="info-item"><strong>200+</strong><span>Students</span></div>
+        <div class="info-item"><strong>97%</strong><span>Pass Rate</span></div>
+        <div class="info-item"><strong>8 Yr</strong><span>Exp</span></div>
+      </div>
+    </div>
+
+    <!-- Faculty 4 -->
+    <div class="faculty-card">
+      <div class="faculty-avatar" style="background: linear-gradient(135deg,#d97706,#f59e0b);">👩‍💻</div>
+      <h3>Kavita Meena</h3>
+      <div class="subject">Social Studies & Sanskrit</div>
+      <div class="qual">M.A. History, B.Ed.</div>
+      <div class="exp"><i class="fa-solid fa-briefcase"></i> 6 वर्षों का अनुभव</div>
+      <div class="faculty-skills">
+        <span class="skill-tag">History</span>
+        <span class="skill-tag">Geography</span>
+        <span class="skill-tag">Sanskrit</span>
+        <span class="skill-tag">Class 6-10</span>
+      </div>
+      <div class="faculty-info">
+        <div class="info-item"><strong>140+</strong><span>Students</span></div>
+        <div class="info-item"><strong>95%</strong><span>Pass Rate</span></div>
+        <div class="info-item"><strong>6 Yr</strong><span>Exp</span></div>
+      </div>
+    </div>
+
+    <!-- Faculty 5 -->
+    <div class="faculty-card">
+      <div class="faculty-avatar" style="background: linear-gradient(135deg,#0891b2,#06b6d4);">👨‍💼</div>
+      <h3>Amit Yadav</h3>
+      <div class="subject">Computer Science</div>
+      <div class="qual">MCA, B.Ed.</div>
+      <div class="exp"><i class="fa-solid fa-briefcase"></i> 5 वर्षों का अनुभव</div>
+      <div class="faculty-skills">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">C/C++</span>
+        <span class="skill-tag">MS Office</span>
+        <span class="skill-tag">Class 9-12</span>
+      </div>
+      <div class="faculty-info">
+        <div class="info-item"><strong>120+</strong><span>Students</span></div>
+        <div class="info-item"><strong>99%</strong><span>Pass Rate</span></div>
+        <div class="info-item"><strong>5 Yr</strong><span>Exp</span></div>
+      </div>
+    </div>
+
+    <!-- Faculty 6 -->
+    <div class="faculty-card">
+      <div class="faculty-avatar" style="background: linear-gradient(135deg,#be123c,#f43f5e);">👩‍🎨</div>
+      <h3>Sunita Rajput</h3>
+      <div class="subject">Primary Classes (1-5)</div>
+      <div class="qual">B.A., D.El.Ed.</div>
+      <div class="exp"><i class="fa-solid fa-briefcase"></i> 9 वर्षों का अनुभव</div>
+      <div class="faculty-skills">
+        <span class="skill-tag">All Subjects</span>
+        <span class="skill-tag">Drawing</span>
+        <span class="skill-tag">Activity</span>
+        <span class="skill-tag">Class 1-5</span>
+      </div>
+      <div class="faculty-info">
+        <div class="info-item"><strong>160+</strong><span>Students</span></div>
+        <div class="info-item"><strong>100%</strong><span>Pass Rate</span></div>
+        <div class="info-item"><strong>9 Yr</strong><span>Exp</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── COURSES ── -->
+<section class="courses" id="courses">
+  <div class="section-header">
+    <span class="section-tag">COURSES</span>
+    <h2>हमारे Courses</h2>
+    <p>Class 1 से 12 तक सभी Subjects की तैयारी</p>
+  </div>
+  <div class="courses-grid">
+    <div class="course-card">
+      <div class="course-icon" style="background:#fff3e8;"><span>🔢</span></div>
+      <h4>Mathematics</h4>
+      <p>Class 6 से 12 तक Algebra, Geometry, Calculus और Board Exam की complete तैयारी।</p>
+      <div class="course-meta">
+        <span class="badge" style="background:#fff3e8;color:var(--primary);">Class 6-12</span>
+        <span style="font-size:.78rem;color:var(--muted);">₹800/month</span>
+      </div>
+    </div>
+    <div class="course-card">
+      <div class="course-icon" style="background:#f0fdf4;"><span>🔬</span></div>
+      <h4>Science (PCB/PCM)</h4>
+      <p>Physics, Chemistry, Biology – सभी topics को आसान तरीके से समझाया जाता है।</p>
+      <div class="course-meta">
+        <span class="badge" style="background:#f0fdf4;color:#16a34a;">Class 8-12</span>
+        <span style="font-size:.78rem;color:var(--muted);">₹900/month</span>
+      </div>
+    </div>
+    <div class="course-card">
+      <div class="course-icon" style="background:#eff6ff;"><span>📝</span></div>
+      <h4>Hindi & English</h4>
+      <p>Grammar, Essay, Letter Writing और Literature – सभी Board Patterns के अनुसार।</p>
+      <div class="course-meta">
+        <span class="badge" style="background:#eff6ff;color:#2563eb;">Class 1-12</span>
+        <span style="font-size:.78rem;color:var(--muted);">₹600/month</span>
+      </div>
+    </div>
+    <div class="course-card">
+      <div class="course-icon" style="background:#fef9c3;"><span>🌍</span></div>
+      <h4>Social Studies</h4>
+      <p>History, Geography, Civics, Economics – Maps और Diagrams के साथ easy learning।</p>
+      <div class="course-meta">
+        <span class="badge" style="background:#fef9c3;color:#ca8a04;">Class 6-10</span>
+        <span style="font-size:.78rem;color:var(--muted);">₹700/month</span>
+      </div>
+    </div>
+    <div class="course-card">
+      <div class="course-icon" style="background:#fdf2f8;"><span>💻</span></div>
+      <h4>Computer Science</h4>
+      <p>Practical Programming, Theory और Board Exam preparation के साथ Lab Sessions।</p>
+      <div class="course-meta">
+        <span class="badge" style="background:#fdf2f8;color:#9333ea;">Class 9-12</span>
+        <span style="font-size:.78rem;color:var(--muted);">₹800/month</span>
+      </div>
+    </div>
+    <div class="course-card">
+      <div class="course-icon" style="background:#fff1f2;"><span>🧒</span></div>
+      <h4>Primary Classes (1-5)</h4>
+      <p>सभी विषयों में Foundation मजबूत करें – Fun Activities और Story-based Learning।</p>
+      <div class="course-meta">
+        <span class="badge" style="background:#fff1f2;color:#e11d48;">Class 1-5</span>
+        <span style="font-size:.78rem;color:var(--muted);">₹500/month</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FEATURES ── -->
+<section class="features" id="features">
+  <div class="section-header">
+    <span class="section-tag">WHY CHOOSE US</span>
+    <h2>हमें क्यों चुनें?</h2>
+    <p>जो चीजें हमें अलग बनाती हैं</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-item">
+      <div class="feat-icon">👥</div>
+      <h4>Small Batch Size</h4>
+      <p>Maximum 15 Students per batch – हर बच्चे पर Personal Attention</p>
+    </div>
+    <div class="feature-item">
+      <div class="feat-icon">📅</div>
+      <h4>Flexible Timings</h4>
+      <p>Morning 6AM-9AM & Evening 4PM-8PM – अपनी सुविधा अनुसार Batch चुनें</p>
+    </div>
+    <div class="feature-item">
+      <div class="feat-icon">📊</div>
+      <h4>Regular Tests</h4>
+      <p>Weekly Tests, Monthly Exams और Full Mock Tests से Exam तैयारी पक्की</p>
+    </div>
+    <div class="feature-item">
+      <div class="feat-icon">💬</div>
+      <h4>Doubt Sessions</h4>
+      <p>Special Doubt Clearing Sessions जिससे कोई भी Topic unclear न रहे</p>
+    </div>
+    <div class="feature-item">
+      <div class="feat-icon">📱</div>
+      <h4>Parent Updates</h4>
+      <p>WhatsApp पर Regular Progress Updates और Monthly Parent-Teacher Meeting</p>
+    </div>
+    <div class="feature-item">
+      <div class="feat-icon">💰</div>
+      <h4>Affordable Fees</h4>
+      <p>Transparent और Affordable Fee Structure – कोई Hidden Charges नहीं</p>
+    </div>
+    <div class="feature-item">
+      <div class="feat-icon">📚</div>
+      <h4>Study Material</h4>
+      <p>Free Notes, Question Banks और Practice Papers प्रत्येक Student को मिलते हैं</p>
+    </div>
+    <div class="feature-item">
+      <div class="feat-icon">🏆</div>
+      <h4>Proven Results</h4>
+      <p>98% Pass Rate के साथ Hundreds of Students ने Board Exams में Top किया है</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── REGISTRATION FORM ── -->
+<section class="registration" id="registration">
+  <div class="section-header">
+    <span class="section-tag">JOIN US</span>
+    <h2>Registration Form</h2>
+    <p>आज ही अपना Admission लें और अपने भविष्य को उज्जवल बनाएं</p>
+  </div>
+  <div class="form-card">
+    <div id="form-body">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Student का नाम <span>*</span></label>
+          <input type="text" id="stdName" placeholder="पूरा नाम लिखें" required />
+        </div>
+        <div class="form-group">
+          <label>Father का नाम <span>*</span></label>
+          <input type="text" id="fatherName" placeholder="पिता का नाम" required />
+        </div>
+        <div class="form-group">
+          <label>Class / कक्षा <span>*</span></label>
+          <select id="stdClass" required>
+            <option value="">-- Class चुनें --</option>
+            <option>Class 1</option><option>Class 2</option><option>Class 3</option>
+            <option>Class 4</option><option>Class 5</option><option>Class 6</option>
+            <option>Class 7</option><option>Class 8</option><option>Class 9</option>
+            <option>Class 10</option><option>Class 11 (Science)</option>
+            <option>Class 11 (Arts)</option><option>Class 12 (Science)</option>
+            <option>Class 12 (Arts)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Subject / विषय <span>*</span></label>
+          <select id="stdSubject" required>
+            <option value="">-- Subject चुनें --</option>
+            <option>Mathematics</option><option>Science (PCB)</option>
+            <option>Science (PCM)</option><option>Hindi</option>
+            <option>English</option><option>Social Studies</option>
+            <option>Computer Science</option><option>All Subjects</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Mobile Number <span>*</span></label>
+          <input type="tel" id="mobile" placeholder="10 अंकों का Mobile नंबर" maxlength="10" required />
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="email" placeholder="email@example.com" />
+        </div>
+        <div class="form-group">
+          <label>Batch Timing <span>*</span></label>
+          <select id="batch" required>
+            <option value="">-- Batch चुनें --</option>
+            <option>Morning (6AM - 9AM)</option>
+            <option>Evening (4PM - 6PM)</option>
+            <option>Evening (6PM - 8PM)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>School का नाम</label>
+          <input type="text" id="school" placeholder="आप किस School में पढ़ते हैं?" />
+        </div>
+        <div class="form-group full">
+          <label>Address / पता <span>*</span></label>
+          <input type="text" id="address" placeholder="घर का पूरा पता लिखें" required />
+        </div>
+        <div class="form-group full">
+          <label>Additional Message (optional)</label>
+          <textarea id="message" placeholder="कोई सवाल या जानकारी हो तो यहाँ लिखें..."></textarea>
+        </div>
+      </div>
+      <div class="form-submit">
+        <button class="btn-submit" onclick="submitForm()">
+          <i class="fa-solid fa-paper-plane"></i> &nbsp; Registration Submit करें
+        </button>
+        <p class="form-note"><i class="fa-solid fa-lock"></i> आपकी जानकारी पूरी तरह सुरक्षित है। हम 24 घंटों में आपसे संपर्क करेंगे।</p>
+      </div>
+    </div>
+    <div id="success-msg">
+      <div class="success-icon">✅</div>
+      <h3>Registration Successful! 🎉</h3>
+      <p>आपका Registration हो गया है! हमारी Team जल्द ही आपसे WhatsApp या Call पर संपर्क करेगी।<br><br>
+      📞 किसी भी जानकारी के लिए Call करें: <strong>+91 94XXX XXXXX</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section class="contact" id="contact">
+  <div class="section-header">
+    <span class="section-tag">CONTACT US</span>
+    <h2>हमसे संपर्क करें</h2>
+    <p>कोई भी सवाल हो, हम यहाँ हैं आपके लिए</p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-item">
+      <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+      <div>
+        <h4>हमारा पता</h4>
+        <p>Rahul Tuition Classes<br>DesulaKhood, Alwar<br>Rajasthan – 301001</p>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+      <div>
+        <h4>Call / WhatsApp</h4>
+        <p>+91 94XXX XXXXX<br>+91 98XXX XXXXX<br>सोम-शनि: 8AM–8PM</p>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon"><i class="fa-solid fa-clock"></i></div>
+      <div>
+        <h4>Batch Timings</h4>
+        <p>Morning: 6:00 AM – 9:00 AM<br>Evening: 4:00 PM – 8:00 PM<br>Sunday: Doubt Session Only</p>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon"><i class="fa-brands fa-whatsapp"></i></div>
+      <div>
+        <h4>WhatsApp Group</h4>
+        <p>Study Material, Test Results और Updates के लिए हमारे WhatsApp Group से जुड़ें।</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-links">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#faculty">Faculty</a>
+    <a href="#courses">Courses</a>
+    <a href="#registration">Register</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <p>© 2025 <strong>Rahul Tuition Classes</strong> – Desula Khood, Alwar, Rajasthan. All Rights Reserved.</p>
+  <p style="margin-top:6px;font-size:.76rem;">Designed with ❤️ for Students of Alwar</p>
+</footer>
+
+<!-- ── TOAST ── -->
+<div class="toast" id="toast"><i class="fa-solid fa-circle-check"></i> <span id="toastMsg"></span></div>
+
+<script>
+  // Hamburger
+  const ham = document.getElementById('hamburger');
+  const nav = document.getElementById('navLinks');
+  ham.addEventListener('click', () => nav.classList.toggle('open'));
+
+  // Nav active on scroll
+  const sections = document.querySelectorAll('section[id], .hero[id]');
+  const links = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) cur = s.getAttribute('id'); });
+    links.forEach(l => {
+      l.classList.remove('active');
+      if (l.getAttribute('href') === '#' + cur) l.classList.add('active');
+    });
+    // Close mobile nav on scroll
+    nav.classList.remove('open');
+  });
+
+  // Toast helper
+  function showToast(msg, color = '#22c55e') {
+    const t = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = msg;
+    t.style.background = color;
+    t.style.display = 'flex';
+    setTimeout(() => t.style.display = 'none', 4000);
+  }
+
+  // Form submit
+  function submitForm() {
+    const fields = [
+      { id: 'stdName', label: 'Student का नाम' },
+      { id: 'fatherName', label: 'Father का नाम' },
+      { id: 'stdClass', label: 'Class' },
+      { id: 'stdSubject', label: 'Subject' },
+      { id: 'mobile', label: 'Mobile Number' },
+      { id: 'batch', label: 'Batch Timing' },
+      { id: 'address', label: 'Address' },
+    ];
+    for (let f of fields) {
+      const el = document.getElementById(f.id);
+      if (!el.value.trim()) {
+        showToast(`⚠️ ${f.label} भरना जरूरी है!`, '#ef4444');
+        el.focus(); return;
+      }
+    }
+    const mob = document.getElementById('mobile').value;
+    if (!/^\d{10}$/.test(mob)) {
+      showToast('⚠️ Mobile Number 10 अंकों का होना चाहिए!', '#ef4444');
+      document.getElementById('mobile').focus(); return;
+    }
+    // Show success
+    document.getElementById('form-body').style.display = 'none';
+    document.getElementById('success-msg').style.display = 'block';
+    showToast('🎉 Registration Successfully हो गया!');
+  }
+</script>
+</body>
+</html>
